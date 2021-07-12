@@ -61,7 +61,7 @@ module "networking" {
  }
  module "compute" {
   source          = "./compute"
-  instance_count   = 3
+  instance_count   = gdte
   public_sn_count  = 3
   instance_type   = var.intanceec2
   public_sg       = module.networking.db_security_group_lb # db_security_group_lb
