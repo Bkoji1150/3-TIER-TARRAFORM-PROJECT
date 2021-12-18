@@ -14,23 +14,8 @@ module "networking" {
   db_subnet_group  = true
 }
 
- /*module "networkinterface" {
-  source          = "./networkinterface"
-  subnet_id       = module.networking.subnet_id-interface
-  private_ips     = module.compute.instance
-  security_groups = module.networking.db_security_group_lb
-  public_sn_count =  [3, 3]
- } 
-  module "projectomega-eip" {
-      source            = "./projectomega-eip"
-      projectomega_interface  =  module.networkinterface.instance-inter
-      private_ip           =   module.compute.instance
-      #projectomega_igw     =   module.networking.projectomega-igw
-      public_sn_count    = 3
-  }
-  */
-   
- module "loadbalancing" {
+
+module "loadbalancing" {
   source                            = "./loadbalancing" # db_subnet_group_name
   public_sg                         = module.networking.db_security_group_lb
   public_subnets                    = module.networking.db_subnets_lb
@@ -43,9 +28,9 @@ module "networking" {
   lb_interval                       = 30
   listener_port                     = 80
   listener_protocol                 = "HTTP"
- }
+}
 
- module "database" {
+module "database" {
   source                 = "./database"
   db_storage             = 300
   engine_version         = "5.7.22"
@@ -58,30 +43,23 @@ module "networking" {
   skip_db_snapshot       = true
   db_subnet_group_name   = module.networking.db_subnet_group_name[0]
   vpc_security_group_ids = module.networking.db_security_group
- }
- module "compute" {
-  source          = "./compute"
-  instance_count   = gdte
-  public_sn_count  = 3
-  instance_type   = var.intanceec2
-  public_sg       = module.networking.db_security_group_lb # db_security_group_lb
-  public_subnets  = module.networking.db_subnets_lb
-  data_values     = var.goldenAMI
-  keypair_name    = "bello"
-  public_key_path = var.public_key_path
-  user_data_path  = "${path.root}/userdata.tpl"
-  name            = var.dbname
-  username        = var.username
-  password        = var.password
-  vol_size        = 10 
-  lb_target_group_arn  = module.loadbalancing.lb_target_group_arn
-  #interface_id    =  module.networkinterface.instance
-  db_endpoint     = module.database.db_endpoint
 }
-
-module "s3bucket" {
-  source = "./s3bucket"
-  bucket = "mydeiaexportededlogs"
+module "compute" {
+  source              = "./compute"
+  instance_count      = 2
+  public_sn_count     = 3
+  instance_type       = var.intanceec2
+  public_sg           = module.networking.db_security_group_lb # db_security_group_lb
+  public_subnets      = module.networking.db_subnets_lb
+  keypair_name        = "hapletkey"
+  public_key_path     = var.public_key_path
+  user_data_path      = "${path.root}/userdata.tpl"
+  name                = var.dbname
+  username            = var.username
+  password            = var.password
+  vol_size            = 10
+  lb_target_group_arn = module.loadbalancing.lb_target_group_arn
+  db_endpoint         = module.database.db_endpoint
 }
 
  

@@ -14,5 +14,5 @@ variable "vpc_security_group_ids" {}
 variable "identifier" {}
 variable "skip_db_snapshot" {}
 variable "multi_az" {
-   type = bool
- }
+  type = bool
+}

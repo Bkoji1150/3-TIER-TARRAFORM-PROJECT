@@ -1,6 +1,6 @@
- ### ---- networkinterface/main.rf
-  
-   /*variable "subnet_id" {}
+### ---- networkinterface/main.rf
+
+/*variable "subnet_id" {}
    
     variable "private_ips" {
        #type = list

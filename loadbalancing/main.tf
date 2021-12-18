@@ -17,19 +17,19 @@ resource "aws_lb_target_group" "Project-OmegalbTargetGroup" {
   protocol = var.tg_portocol #"HTTP"
   vpc_id   = var.vpc_id
   lifecycle {
-    ignore_changes = [name] # this this to prevent our target group no to get destroyed
+    ignore_changes        = [name] # this this to prevent our target group no to get destroyed
     create_before_destroy = true
-    }
+  }
   health_check {
     healthy_threshold   = var.Project-Omega_healthy_threshold   # 2
     unhealthy_threshold = var.Project-Omega_unhealthy_threshold #2
-    timeout             = var.lb_timeout                # 3
-    interval            = var.lb_interval               # 30
+    timeout             = var.lb_timeout                        # 3
+    interval            = var.lb_interval                       # 30
   }
- }
+}
 
 
- resource "aws_lb_listener" "front_end" {
+resource "aws_lb_listener" "front_end" {
   load_balancer_arn = aws_lb.Project-Omegalb.arn
   port              = var.listener_port     #80
   protocol          = var.listener_protocol #"HTTP"
@@ -37,4 +37,4 @@ resource "aws_lb_target_group" "Project-OmegalbTargetGroup" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.Project-OmegalbTargetGroup.arn
   }
-  }
+}

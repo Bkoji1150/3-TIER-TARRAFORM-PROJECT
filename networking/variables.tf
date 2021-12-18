@@ -7,26 +7,26 @@ variable "omegavpc_cidr" {
 
 variable "max_subnets" {}
 
- variable "public_sn_count" {
+variable "public_sn_count" {
   #type = list
   description = "Provide your desired count for OMEGA VPC"
- }
+}
 
- variable "public_cidrs" {
-  type = list 
+variable "public_cidrs" {
+  type        = list
   description = "Provide your desired Cidr for OMEGA VPC"
- }
+}
 
- variable "private_sn_count" {
+variable "private_sn_count" {
   #type = list
   description = "Provide your desired count for OMEGA VPC"
- }
+}
 
- variable "private_cidrs" {
-  type = list 
+variable "private_cidrs" {
+  type        = list
   description = "Provide your desired Cidr for OMEGA VPC"
- }
- 
- variable "security_groups" {}
+}
 
- variable "db_subnet_group" {}
+variable "security_groups" {}
+
+variable "db_subnet_group" {}

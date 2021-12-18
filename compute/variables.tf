@@ -1,13 +1,12 @@
 ### --- compute/variable.tf --
 
 variable "public_sn_count" {
-    #type = list
+  #type = list
 }
- variable "instance_count"{}
+variable "instance_count" {}
 variable "instance_type" {}
 variable "public_sg" {}
 variable "public_subnets" {}
-variable "data_values" {}
 variable "keypair_name" {}
 variable "public_key_path" {}
 variable "user_data_path" {}

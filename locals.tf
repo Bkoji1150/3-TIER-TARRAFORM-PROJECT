@@ -3,7 +3,7 @@
 locals {
   omega_vpc = "200.0.0.0/16"
 }
-  
+
 locals {
   security_groups = {
     public = {
@@ -46,7 +46,7 @@ locals {
           protocol    = "tcp"
           cidr_blocks = [local.omega_vpc]
         }
- }
-}
- }
+      }
+    }
+  }
 }

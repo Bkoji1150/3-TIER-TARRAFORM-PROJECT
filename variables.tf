@@ -1,6 +1,6 @@
 variable "aws_region" {
   #type        = string
-  default     = "us-east-1"
+  default     = "us-east-2"
   description = "Please Provide Your Desired AWS Region"
 }
 variable "dbname" {
@@ -9,28 +9,23 @@ variable "dbname" {
 }
 
 variable "username" {
-  type      = string
-  sensitive = true
+  type = string
 }
- 
- 
+
+
 variable "password" {
-  sensitive = true
+
   #default = 
 }
 
 variable "intanceec2" {
-  #type      = string
-  sensitive = true
+
 }
 
-variable "goldenAMI" {
-  type = list(any)
-}
 variable "public_key_path" {
-  sensitive = true
-}  
- 
+
+}
+
 
 
 
