@@ -11,3 +11,7 @@
    output "loadBalancingSecurityGroup" {
      value = aws_lb_listener.front_end.id
    }
+
+output "lb_http_listener_arn" {
+     value = aws_lb_listener.front_end.arn
+   }
